@@ -62,13 +62,14 @@ Bestanden in `brand/logo/`:
 |---|---|---|
 | Bosgroen | `#1F3B33` | Primair: logo, koppen, footer. Staat voor betrouwbaarheid en buiten |
 | Zand | `#F6F1E7` | Achtergrond: warm, rustig |
-| Terracotta | `#D9693C` | Accent: knoppen/CTA, highlights. Vrolijk, valt op |
+| Terracotta | `#D9693C` | Merkaccent: logo-oren, illustraties, grote vlakken |
+| Terracotta donker | `#B4502A` | UI-accent: knoppen/CTA, bovenkoppen, links (WCAG AA: 5,1:1 op wit, 4,5:1 op zand) |
 | Klei | `#E8DCC8` | Secundaire vlakken, kaarten |
 | Inkt | `#1A1F1C` | Bodytekst |
 | Salie | `#8FA89B` | Ondersteunend: iconen, lijnen |
 | Wit | `#FFFFFF` | Productvlakken |
 
-Contrast: Bosgroen op Zand ≈ 11:1; wit op Terracotta ≈ 3,4:1, dus knoptekst is **vet en ≥ 16px**. Voor kleine tekst op Terracotta gebruik je Inkt (≈ 5:1).
+Contrast: Bosgroen op Zand ≈ 11:1. Wit op de lichte Terracotta haalt maar 3,5:1, en daarom gebruiken knoppen en tekst **Terracotta donker** (getest met axe-core: 0 contrastfouten).
 
 ## Typografie
 - **Koppen:** *DM Sans* Bold. Geometrisch, vriendelijk, uitstekend leesbaar op mobiel en gratis in de Shopify-fontbibliotheek (geen extra laadkosten van externe fonts).

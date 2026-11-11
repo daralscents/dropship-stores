@@ -1,5 +1,42 @@
 {
-  "current": "Default",
+  "current": {
+    "color_primary": "#1F3B33",
+    "color_background": "#F6F1E7",
+    "color_accent": "#B4502A",
+    "color_surface": "#E8DCC8",
+    "color_text": "#1A1F1C",
+    "color_muted": "#56635D",
+    "type_header_font": "dm_sans_n7",
+    "type_body_font": "dm_sans_n4",
+    "logo_width": 148,
+    "cart_type": "drawer",
+    "cart_upsell_text": "Tweede fles erbij? Met 2 stuks krijg je automatisch € 2,50 korting per fles.",
+    "shipping_text": "Gratis verzending naar Nederland en België",
+    "returns_text": "14 dagen bedenktijd, eenvoudig retourneren",
+    "service_text": "Persoonlijke klantenservice in het Nederlands",
+    "company_hours": "We reageren binnen 1 werkdag (ma–vr)",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "menu_1": "footer",
+          "menu_2": "juridisch"
+        }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "Gratis verzending naar Nederland en België"
+        }
+      }
+    }
+  },
   "presets": {
     "Default": {
       "color_primary": "#1F3B33",

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welkom bij Lobbes</title>
+<style>
+body{margin:0;background:#F6F1E7;font-family:'DM Sans',Arial,Helvetica,sans-serif;color:#1A1F1C}
+a{color:#1F3B33}
+.wrap{max-width:600px;margin:0 auto;padding:24px 16px}
+.card{background:#ffffff;border-radius:20px;padding:32px 28px}
+h1{color:#1F3B33;font-size:26px;line-height:1.2;margin:0 0 16px}
+p{font-size:16px;line-height:1.6;margin:0 0 14px}
+.btn{display:inline-block;background:#B4502A;color:#ffffff!important;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:999px;font-size:16px}
+.muted{color:#56635D;font-size:13px;line-height:1.5}
+.pre{display:none;max-height:0;overflow:hidden}
+ul{padding-left:20px;margin:0 0 14px} li{font-size:16px;line-height:1.6;margin-bottom:6px}
+</style></head>
+<body>
+<div class="pre">Fijn dat je er bent. Dit kun je van ons verwachten.</div>
+<div class="wrap">
+  <p style="text-align:center;margin:8px 0 20px"><a href="https://[JOUW-DOMEIN]"><img src="[URL NAAR lobbes-logo-horizontaal.png – upload in Klaviyo → Images]" width="180" alt="Lobbes" style="border:0"></a></p>
+  <div class="card">
+    <h1>Welkom bij Lobbes{% if first_name %}, {{ first_name }}{% endif %}!</h1>
+    <p>Fijn dat je er bent. Lobbes maakt slimme, vrolijke spullen voor onderweg met je hond. We beginnen met de Onderweg-fles: water én brokjes in één fles.</p>
+    <p>Wat je van ons kunt verwachten:</p>
+    <ul><li>Af en toe wandeltips, routes en seizoenstips</li><li>Als eerste horen over nieuwe producten</li><li>Geen spam, en afmelden kan altijd met één klik</li></ul>
+    <p style="margin:24px 0"><a class="btn" href="https://[JOUW-DOMEIN]/products/onderweg-fles?utm_source=klaviyo&utm_medium=email&utm_campaign=welkom">Bekijk de Onderweg-fles</a></p>
+    <p class="muted">Vraag? Beantwoord deze mail gewoon, we lezen alles zelf.</p>
+  </div>
+  <p class="muted" style="text-align:center;margin-top:20px">
+    Lobbes · {{ organization.name }} · {{ organization.full_address }}<br>
+    Je ontvangt deze mail omdat je je hebt aangemeld voor de Lobbes-nieuwsbrief. {% unsubscribe 'Afmelden' %} · {% manage_preferences 'Voorkeuren' %}
+  </p>
+</div>
+</body></html>
