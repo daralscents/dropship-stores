@@ -11,8 +11,8 @@ Legenda: ✅ werkt / klaar · 🟡 voorbereid, moet nog gekoppeld of ingevuld wo
 | Merknaam juridisch vrij / domein beschikbaar | 🔴 | BOIP/TMview zelf checken; domein controleer ik met Shopify zodra de koppeling werkt |
 | Prijsmodel en scenario's | ✅ | `docs/03` + xlsx; aannames verifiëren (btw in inkoop, douane, betaalkosten) |
 | Shopify-thema (alle pagina's, product, winkelwagen, lade) | ✅ lokaal getest | `theme/`, 0 Theme Check-meldingen, 0 QA-problemen |
-| Thema in Shopify dev store | 🔴 | Shopify-koppeling moet opnieuw geautoriseerd worden op de **dev store** |
-| Product, pagina's, menu's, kortingen, beleid in Shopify | 🟡 | Script `tools/shopify/setup-store.mjs` (dry-run getest) of via de koppeling |
+| Thema in Shopify dev store | ✅ | "Lobbes v1.1" staat ongepubliceerd in `test-1-jvuncbjt.myshopify.com`. Zie `docs/10-shopify-dev-store-status.md` |
+| Product, pagina's, menu's, kortingen in Shopify | ✅ | Aangemaakt via de koppeling. Beleid en NL-verzendtarief: handmatig (zie `docs/10`) |
 | Checkout & betalingen | 🔴 | Alleen via Shopify. Er is bewust **geen** nep-checkout gebouwd |
 | Productfoto's/video's | 🔴 | Nu nette SVG-illustraties. Echte foto's van proefexemplaren nodig (zie §C) |
 | Specificaties (inhoud, materiaal, afmetingen) | 🔴 | Bij leverancier opvragen → metafields invullen; de site toont ze automatisch |
@@ -25,7 +25,7 @@ Legenda: ✅ werkt / klaar · 🟡 voorbereid, moet nog gekoppeld of ingevuld wo
 
 ## B. Stappenplan (in volgorde)
 
-### 1. Koppelen (vandaag)
+### 1. Koppelen ✅ (gedaan, zie `docs/10-shopify-dev-store-status.md`)
 1. **Shopify-connector opnieuw autoriseren op je dev store** (claude.ai → Instellingen → Connectors → Shopify, of `/mcp` in Claude Code). Kies de **development store**, niet Dar Al Scents.
 2. Daarna zet ik (na jouw akkoord per actie) in de dev store: het thema als **ongepubliceerd** thema, het product met 5 varianten, de metafield-definities, de pagina's, de menu's, de Duo/Trio-kortingen en het beleid. Ook controleer ik de domeinbeschikbaarheid.
    - Alternatief zonder mij: `shopify theme push --unpublished --path theme --store <dev>.myshopify.com` en `node tools/shopify/setup-store.mjs --apply` (zie README).

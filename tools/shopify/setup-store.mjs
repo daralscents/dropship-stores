@@ -83,12 +83,12 @@ for (const [handle, title, suffix] of PAGES) {
     { p: { title, handle, body: page(handle), isPublished: true, ...(suffix ? { templateSuffix: suffix } : {}) } }, `pagina /pages/${handle}`);
 }
 
-// 5. Menu's (main-menu en footer bestaan standaard → bijwerken; juridisch → aanmaken)
+// 5. Menu's: eigen Lobbes-menu's (bestaande main-menu/footer blijven ongemoeid; het thema verwijst via settings_data.json naar deze handles)
 const http = (title, url) => ({ title, type: 'HTTP', url });
 const MENUS = {
-  'main-menu': ['Hoofdmenu', [http('Onderweg-fles', `/products/${product.handle}`), http('Zo werkt het', '/#hoe-het-werkt'), http('Over ons', '/pages/over-ons'), http('Vragen', '/pages/veelgestelde-vragen'), http('Contact', '/pages/contact')]],
-  footer: ['Klantenservice', [http('Verzending & levering', '/pages/verzending-en-levering'), http('Retourneren', '/pages/retourneren'), http('Veelgestelde vragen', '/pages/veelgestelde-vragen'), http('Contact', '/pages/contact'), http('Over ons', '/pages/over-ons')]],
-  juridisch: ['Juridisch', [http('Algemene voorwaarden', '/pages/algemene-voorwaarden'), http('Privacybeleid', '/pages/privacybeleid'), http('Cookiebeleid', '/pages/cookiebeleid'), http('Herroepingsformulier', '/pages/herroepingsformulier')]],
+  'lobbes-hoofdmenu': ['Lobbes hoofdmenu', [http('Onderweg-fles', `/products/${product.handle}`), http('Zo werkt het', '/#hoe-het-werkt'), http('Over ons', '/pages/over-ons'), http('Vragen', '/pages/veelgestelde-vragen'), http('Contact', '/pages/contact')]],
+  'lobbes-klantenservice': ['Klantenservice', [http('Verzending & levering', '/pages/verzending-en-levering'), http('Retourneren', '/pages/retourneren'), http('Veelgestelde vragen', '/pages/veelgestelde-vragen'), http('Contact', '/pages/contact'), http('Over ons', '/pages/over-ons')]],
+  'lobbes-juridisch': ['Juridisch', [http('Algemene voorwaarden', '/pages/algemene-voorwaarden'), http('Privacybeleid', '/pages/privacybeleid'), http('Cookiebeleid', '/pages/cookiebeleid'), http('Herroepingsformulier', '/pages/herroepingsformulier')]],
 };
 const existing = APPLY ? (await gql('{ menus(first: 50) { nodes { id handle } } }', {}, 'menu\'s ophalen')).menus.nodes : [];
 for (const [handle, [title, items]] of Object.entries(MENUS)) {
@@ -109,7 +109,7 @@ for (const [title, qty, amount] of [['Duo-korting', '2', '2.50'], ['Trio-korting
   }, `${title}: €${amount} per fles vanaf ${qty} stuks`);
 }
 
-// 7. Shopify-beleid (verschijnt ook in de checkout)
+// 7. Shopify-beleid (verschijnt ook in de checkout) – vereist scope write_legal_policies
 for (const [type, h] of [['REFUND_POLICY', 'retourneren'], ['PRIVACY_POLICY', 'privacybeleid'], ['TERMS_OF_SERVICE', 'algemene-voorwaarden'], ['SHIPPING_POLICY', 'verzending-en-levering']]) {
   await gql(`mutation($p: ShopPolicyInput!) { shopPolicyUpdate(shopPolicy: $p) { shopPolicy { id } userErrors { field message } } }`, { p: { type, body: page(h) } }, `beleid ${type}`);
 }

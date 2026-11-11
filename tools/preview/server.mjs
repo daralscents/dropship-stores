@@ -43,9 +43,9 @@ const pages = Object.fromEntries(Object.entries(pageFiles).map(([h, [title, suff
 }]));
 const link = (title, url) => ({ title, url, current: false });
 const linklists = {
-  'main-menu': { title: 'Hoofdmenu', links: [link('Onderweg-fles', '/products/onderweg-fles'), link('Zo werkt het', '/#hoe-het-werkt'), link('Over ons', '/pages/over-ons'), link('Vragen', '/pages/veelgestelde-vragen'), link('Contact', '/pages/contact')] },
-  footer: { title: 'Klantenservice', links: [link('Verzending & levering', '/pages/verzending-en-levering'), link('Retourneren', '/pages/retourneren'), link('Veelgestelde vragen', '/pages/veelgestelde-vragen'), link('Contact', '/pages/contact'), link('Over ons', '/pages/over-ons')] },
-  juridisch: { title: 'Juridisch', links: [link('Algemene voorwaarden', '/pages/algemene-voorwaarden'), link('Privacybeleid', '/pages/privacybeleid'), link('Cookiebeleid', '/pages/cookiebeleid'), link('Herroepingsformulier', '/pages/herroepingsformulier')] },
+  'lobbes-hoofdmenu': { title: 'Hoofdmenu', links: [link('Onderweg-fles', '/products/onderweg-fles'), link('Zo werkt het', '/#hoe-het-werkt'), link('Over ons', '/pages/over-ons'), link('Vragen', '/pages/veelgestelde-vragen'), link('Contact', '/pages/contact')] },
+  'lobbes-klantenservice': { title: 'Klantenservice', links: [link('Verzending & levering', '/pages/verzending-en-levering'), link('Retourneren', '/pages/retourneren'), link('Veelgestelde vragen', '/pages/veelgestelde-vragen'), link('Contact', '/pages/contact'), link('Over ons', '/pages/over-ons')] },
+  'lobbes-juridisch': { title: 'Juridisch', links: [link('Algemene voorwaarden', '/pages/algemene-voorwaarden'), link('Privacybeleid', '/pages/privacybeleid'), link('Cookiebeleid', '/pages/cookiebeleid'), link('Herroepingsformulier', '/pages/herroepingsformulier')] },
 };
 
 // Winkelwagen in geheugen, met dezelfde bundelkorting als de Shopify automatische kortingen.
@@ -172,7 +172,7 @@ function buildSettings(defs = [], given = {}) {
 }
 const sectionOverrides = {
   'main-product': { shipping_page: 'verzending-en-levering', returns_page: 'retourneren' },
-  footer: { menu_2: 'juridisch' },
+  footer: { menu_2: 'lobbes-juridisch' },
   'main-page-contact': { privacy_page: 'privacybeleid' },
   'product-highlight': { product: 'onderweg-fles' },
 };

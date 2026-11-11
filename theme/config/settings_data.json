@@ -19,14 +19,14 @@
       "header": {
         "type": "header",
         "settings": {
-          "menu": "main-menu"
+          "menu": "lobbes-hoofdmenu"
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
-          "menu_1": "footer",
-          "menu_2": "juridisch"
+          "menu_1": "lobbes-klantenservice",
+          "menu_2": "lobbes-juridisch"
         }
       },
       "announcement-bar": {
@@ -35,7 +35,8 @@
           "text": "Gratis verzending naar Nederland en België"
         }
       }
-    }
+    },
+    "cart_upsell_product": "onderweg-fles"
   },
   "presets": {
     "Default": {

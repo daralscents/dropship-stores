@@ -16,6 +16,7 @@ Eerste product: de **Onderweg-fles** (waterreservoir + voervak + vergrendelknop 
 | `docs/07-juridisch.md` | Consumentenrecht, privacy/cookies, GPSR, import/btw/douane |
 | `docs/08-qa-rapport.md` | Uitgevoerde tests en opgeloste problemen |
 | `docs/09-livegang-checklist.md` | **Wat werkt, wat is voorbereid, wat moet nog** + stappenplan |
+| `docs/10-shopify-dev-store-status.md` | Wat er in de dev store staat en wat nog handmatig moet |
 | `brand/logo/` | Logo, woordmerk, beeldmerk (SVG, licht/donker) |
 | `theme/` | Shopify Online Store 2.0-thema (Liquid, geen dependencies) |
 | `content/` | Productdata (JSON) en paginateksten (HTML) |
@@ -27,6 +28,7 @@ cd tools/preview
 npm install
 node server.mjs          # http://localhost:4173 (gesimuleerde data, géén echte checkout)
 node qa.mjs              # 45 paginaweergaven + koopflow + toegankelijkheid
+cd ../.. && python3 tools/check_schema.py   # Shopify-uploadregels die Theme Check mist
 ```
 
 ## Naar Shopify (dev store)
