@@ -1,0 +1,87 @@
+{%- comment -%} JSON-LD: Organization + WebSite op home, Product + Breadcrumb op productpagina. Geen beoordelingen tot er echte reviews zijn. {%- endcomment -%}
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": {{ shop.url | append: '/#organization' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "logo": {{ 'lobbes-beeldmerk.svg' | asset_url | prepend: 'https:' | json }}
+      {%- liquid
+        assign sames = ''
+        if settings.social_instagram != blank
+          assign sames = sames | append: settings.social_instagram | append: '|'
+        endif
+        if settings.social_tiktok != blank
+          assign sames = sames | append: settings.social_tiktok | append: '|'
+        endif
+        if settings.social_facebook != blank
+          assign sames = sames | append: settings.social_facebook | append: '|'
+        endif
+        assign same_list = sames | split: '|'
+      -%}
+      {%- if same_list.size > 0 -%},"sameAs": {{ same_list | json }}{%- endif -%}
+      {%- if settings.company_email != blank -%},"contactPoint": {"@type": "ContactPoint", "contactType": "customer service", "email": {{ settings.company_email | json }}, "availableLanguage": ["nl"]}{%- endif %}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '/#website' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "inLanguage": "nl-NL",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }},
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+{%- endif -%}
+{%- if request.page_type == 'product' -%}
+{%- assign seo_media = product.featured_media -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ request.origin | append: product.url | json }},
+  {%- if seo_media -%}"image": [{{ seo_media | image_url: width: 1200 | prepend: 'https:' | json }}],{%- endif -%}
+  "description": {{ product.description | strip_html | strip_newlines | truncate: 500 | json }},
+  {%- if product.selected_or_first_available_variant.sku != blank -%}"sku": {{ product.selected_or_first_available_variant.sku | json }},{%- endif -%}
+  "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+  "offers": [
+    {%- for variant in product.variants -%}
+    {
+      "@type": "Offer",
+      {%- if variant.sku != blank -%}"sku": {{ variant.sku | json }},{%- endif -%}
+      {%- if variant.barcode != blank -%}"gtin": {{ variant.barcode | json }},{%- endif -%}
+      "name": {{ variant.title | json }},
+      "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "price": {{ variant.price | divided_by: 100.0 | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "url": {{ request.origin | append: variant.url | json }},
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": { "@type": "Organization", "name": {{ shop.name | json }} },
+      "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": 0, "currency": "EUR" }, "shippingDestination": [{ "@type": "DefinedRegion", "addressCountry": "NL" }, { "@type": "DefinedRegion", "addressCountry": "BE" }] },
+      "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": ["NL", "BE"], "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14, "returnMethod": "https://schema.org/ReturnByMail" }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ request.origin | json }} },
+    { "@type": "ListItem", "position": 2, "name": {{ product.title | json }}, "item": {{ request.origin | append: product.url | json }} }
+  ]
+}
+</script>
+{%- endif -%}

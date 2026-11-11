@@ -1,0 +1,31 @@
+<section class="section section--primary">
+  <div class="container final-cta">
+    <div class="final-cta__media">
+      {% render 'media-or-fallback', image: section.settings.image, fallback: section.settings.fallback, alt: section.settings.heading, sizes: '(min-width: 990px) 40vw, 80vw' %}
+    </div>
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="lead">{{ section.settings.text }}</div>
+      <p><a class="btn btn--primary" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a></p>
+      {%- if settings.shipping_text != blank or settings.returns_text != blank -%}
+      <p class="small">{{ settings.shipping_text }}{% if settings.shipping_text != blank and settings.returns_text != blank %} · {% endif %}{{ settings.returns_text }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Afsluitende koopsectie",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenkop", "default": "Klaar voor elk rondje" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Eén fles. Alles mee. Handen vrij." },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Kies je kleur en neem bij het volgende rondje gewoon één ding mee.</p>" },
+    { "type": "text", "id": "button_label", "label": "Knop", "default": "Bestel de Onderweg-fles" },
+    { "type": "url", "id": "button_link", "label": "Knop link" },
+    { "type": "image_picker", "id": "image", "label": "Afbeelding" },
+    { "type": "text", "id": "fallback", "label": "Reserve-afbeelding (asset)", "default": "fles-zachtroze-transparant.svg" }
+  ],
+  "presets": [ { "name": "Afsluitende koopsectie" } ]
+}
+{% endschema %}

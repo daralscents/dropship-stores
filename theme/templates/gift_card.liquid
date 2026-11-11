@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>{{ 'gift_card.title' | t }} – {{ shop.name }}</title>
+    <style>:root{--c-primary:{{ settings.color_primary }};--c-bg:{{ settings.color_background }};--c-accent:{{ settings.color_accent }};--c-surface:{{ settings.color_surface }};--c-text:{{ settings.color_text }};--c-muted:{{ settings.color_muted }};--f-body:system-ui,sans-serif;--f-head:system-ui,sans-serif;--fw-head:700}</style>
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+    <main class="section text-center">
+      <div class="container" style="max-width:520px">
+        <h1>{{ 'gift_card.title' | t }}</h1>
+        <div class="card">
+          <p class="price__current">{{ gift_card.initial_value | money }}</p>
+          {%- if gift_card.expired or gift_card.enabled == false -%}<p>{{ 'gift_card.expired' | t }}</p>{%- endif -%}
+          <p>{{ 'gift_card.code' | t }}: <strong>{{ gift_card.code | format_code }}</strong></p>
+          {%- if gift_card.balance != gift_card.initial_value -%}<p>{{ 'gift_card.balance' | t }}: {{ gift_card.balance | money }}</p>{%- endif -%}
+          {%- if gift_card.pass_url -%}<a href="{{ gift_card.pass_url }}"><img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="Apple Wallet" loading="lazy" style="margin:0 auto"></a>{%- endif -%}
+        </div>
+        <p style="margin-top:24px"><a class="btn btn--primary" href="{{ shop.url }}">{{ 'gift_card.shop' | t }}</a></p>
+      </div>
+    </main>
+  </body>
+</html>

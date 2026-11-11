@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "c1": { "type": "check", "settings": { "text": "Voervak en waterreservoir in één fles" } },
+        "c2": { "type": "check", "settings": { "text": "Vergrendelknop: op slot als je hem opbergt" } },
+        "c3": { "type": "check", "settings": { "text": "Aan het draagkoord, handen vrij" } }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "eyebrow": "Nieuw: de Onderweg-fles",
+        "heading": "Water én brokjes in één fles.",
+        "text": "<p>Geen losse bakjes, flesjes en zakjes meer. Boven de brokjes, onder het water: één klik op slot en hij gaat mee op elk rondje.</p>",
+        "button_label": "Bekijk de Onderweg-fles",
+        "button_link": "/products/onderweg-fles",
+        "button2_label": "Zo werkt het",
+        "button2_link": "#hoe-het-werkt",
+        "fallback": "fles-ijsblauw.svg",
+        "image_alt": "Lobbes Onderweg-fles in IJsblauw met brokjes in het voervak en water in het reservoir"
+      }
+    },
+    "usp": {
+      "type": "usp-strip",
+      "blocks": {
+        "u1": { "type": "usp", "settings": { "icon": "truck", "text": "Gratis verzending NL & BE" } },
+        "u2": { "type": "usp", "settings": { "icon": "return", "text": "14 dagen bedenktijd" } },
+        "u3": { "type": "usp", "settings": { "icon": "lock", "text": "Veilig betalen" } },
+        "u4": { "type": "usp", "settings": { "icon": "chat", "text": "Service in het Nederlands" } }
+      },
+      "block_order": ["u1", "u2", "u3", "u4"]
+    },
+    "benefits": {
+      "type": "feature-cards",
+      "blocks": {
+        "b1": { "type": "card", "settings": { "icon": "bowl", "title": "Alles in één", "text": "<p>Brokjes boven, water onder. Geen losse flesjes, bakjes en zakjes meer in je jaszak.</p>" } },
+        "b2": { "type": "card", "settings": { "icon": "hand", "title": "Handen vrij", "text": "<p>Het draagkoord gaat om je pols of aan je tas. Zo houd je je handen vrij voor riem en poepzakje.</p>" } },
+        "b3": { "type": "card", "settings": { "icon": "lock", "title": "Op slot voor onderweg", "text": "<p>Zet de knop op slot als je de fles opbergt, en weer open zodra je hond wil drinken.</p>" } },
+        "b4": { "type": "card", "settings": { "icon": "drop", "title": "Netjes drinken", "text": "<p>Je hond drinkt uit het drinkgedeelte van de fles: niet uit je hand en niet uit een plas.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "eyebrow": "Waarom Lobbes",
+        "heading": "Minder gesjouw, meer rondje",
+        "text": "<p>Eén fles voor water én brokjes, gemaakt voor de wandeling van elke dag.</p>",
+        "columns": "4",
+        "style": ""
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "illustration": "fill", "title": "Vullen", "text": "<p>Doe brokjes of snoepjes in het voervak bovenin en vul het reservoir onderin met vers water.</p>" } },
+        "s2": { "type": "step", "settings": { "illustration": "lock", "title": "Op slot", "text": "<p>Zet de knop op slot en hang de fles aan je pols of je tas.</p>" } },
+        "s3": { "type": "step", "settings": { "illustration": "go", "title": "Onderweg", "text": "<p>Dorst of tijd voor een beloning? Ontgrendel, laat water in het drinkgedeelte lopen of pak een brokje.</p>" } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": { "anchor": "hoe-het-werkt", "eyebrow": "Zo werkt het", "heading": "Vullen, op slot, gaan." }
+    },
+    "highlight": {
+      "type": "product-highlight",
+      "settings": {
+        "anchor": "product",
+        "eyebrow": "De Onderweg-fles",
+        "heading": "Lobbes Onderweg-fles",
+        "text": "<p>Voervak boven, waterreservoir onder, vergrendelknop in het midden. Verkrijgbaar in vijf zachte kleuren, zodat er altijd één bij jou (en je hond) past.</p>",
+        "button_label": "Kies je kleur"
+      }
+    },
+    "usecases": {
+      "type": "feature-cards",
+      "blocks": {
+        "k1": { "type": "card", "settings": { "icon": "route", "title": "Het dagelijkse rondje", "text": "<p>Even een langer rondje dan gepland? Water en een beloning heb je gewoon bij je.</p>" } },
+        "k2": { "type": "card", "settings": { "icon": "treat", "title": "Training & puppycursus", "text": "<p>Beloningsbrokjes binnen handbereik, en tussendoor een slokje water.</p>" } },
+        "k3": { "type": "card", "settings": { "icon": "car", "title": "Dagje uit & vakantie", "text": "<p>In de auto, op het terras of op de camping: één fles in plaats van een tas vol losse spullen.</p>" } },
+        "k4": { "type": "card", "settings": { "icon": "sun", "title": "Strand, bos en hei", "text": "<p>Juist op warme dagen en lange wandelingen wil je vers water bij de hand hebben.</p>" } }
+      },
+      "block_order": ["k1", "k2", "k3", "k4"],
+      "settings": { "eyebrow": "Voor elk rondje", "heading": "Waar neem je hem mee naartoe?", "columns": "4", "style": "section--surface" }
+    },
+    "specs": {
+      "type": "specs",
+      "blocks": {
+        "p1": { "type": "spec", "settings": { "label": "Compartimenten", "value": "Voervak (boven) en waterreservoir (onder)" } },
+        "p2": { "type": "spec", "settings": { "label": "Vergrendeling", "value": "Knop met open- en slotstand" } },
+        "p3": { "type": "spec", "settings": { "label": "Meenemen", "value": "Draagkoord" } },
+        "p4": { "type": "spec", "settings": { "label": "Kleuren", "value": "Steengrijs, Zachtroze, Krijtwit, IJsblauw en Lavendel" } },
+        "p5": { "type": "spec", "settings": { "label": "Inhoud water", "value": "" } },
+        "p6": { "type": "spec", "settings": { "label": "Inhoud voervak", "value": "" } },
+        "p7": { "type": "spec", "settings": { "label": "Materiaal", "value": "" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7"],
+      "settings": { "eyebrow": "In één oogopslag", "heading": "Wat zit erop en eraan", "text": "<p>Overzichtelijk en eerlijk: dit is wat je krijgt.</p>", "fallback": "fles-krijtwit.svg", "style": "section--white" }
+    },
+    "trust": {
+      "type": "feature-cards",
+      "blocks": {
+        "t1": { "type": "card", "settings": { "icon": "return", "title": "14 dagen bedenktijd", "text": "<p>Na ontvangst heb je 14 dagen om je aankoop zonder opgaaf van reden te herroepen.</p>" } },
+        "t2": { "type": "card", "settings": { "icon": "shield", "title": "Wettelijke garantie", "text": "<p>Je hebt recht op een product dat doet wat je ervan mag verwachten. Is er iets mis, dan lossen we het op.</p>" } },
+        "t3": { "type": "card", "settings": { "icon": "lock", "title": "Veilig afrekenen", "text": "<p>Je betaalt via de beveiligde checkout van Shopify, met de betaalmethoden die je kent.</p>" } },
+        "t4": { "type": "card", "settings": { "icon": "chat", "title": "Echte mensen", "text": "<p>Vraag over je bestelling of je hond? Je krijgt antwoord van ons, in het Nederlands.</p>" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": { "eyebrow": "Zorgeloos bestellen", "heading": "Duidelijke afspraken", "columns": "4", "style": "" }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "Hoeveel water en voer past erin?", "answer": "<p>De inhoud van het waterreservoir en het voervak vind je bij de specificaties op de productpagina. Twijfel je of het genoeg is voor jouw hond? Stuur ons een berichtje, we denken graag mee.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Lekt de fles in mijn tas?", "answer": "<p>Zet de knop op slot als je de fles opbergt en vervoer hem bij voorkeur rechtop. Zo voorkom je dat er water in je tas terechtkomt. Lekt jouw fles toch? Neem contact op, dan zoeken we samen een oplossing.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Is hij ook geschikt voor grote honden?", "answer": "<p>Het drinkgedeelte is bedoeld om tussendoor te drinken tijdens de wandeling. Drinkt jouw hond veel, dan vul je het drinkgedeelte gewoon een paar keer bij vanuit het reservoir.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Hoe maak ik de fles schoon?", "answer": "<p>Spoel het waterreservoir en het voervak na gebruik om met lauw water en laat ze open drogen. Zo blijft het water fris en het voer droog.</p>" } },
+        "q5": { "type": "qa", "settings": { "question": "Wat kost verzending en hoe snel is het in huis?", "answer": "<p>Verzending naar Nederland en België is gratis. De actuele levertijd zie je op de productpagina en op de pagina <a href=\"/pages/verzending-en-levering\">Verzending &amp; levering</a>.</p>" } },
+        "q6": { "type": "qa", "settings": { "question": "Kan ik mijn bestelling retourneren?", "answer": "<p>Ja. Je hebt 14 dagen bedenktijd na ontvangst. Hoe het werkt lees je op <a href=\"/pages/retourneren\">Retourneren &amp; terugbetalen</a>.</p>" } },
+        "q7": { "type": "qa", "settings": { "question": "Krijg ik korting als ik er meer bestel?", "answer": "<p>Ja. Bij 2 flessen krijg je € 2,50 korting per fles, bij 3 of meer € 4,00 per fles. De korting wordt automatisch verrekend in je winkelwagen, en je mag kleuren mixen.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "settings": { "heading": "Veelgestelde vragen", "link_label": "Alle vragen en antwoorden", "link": "/pages/veelgestelde-vragen", "schema": true, "style": "section--surface" }
+    },
+    "final": {
+      "type": "final-cta",
+      "settings": {
+        "eyebrow": "Klaar voor elk rondje",
+        "heading": "Eén fles. Alles mee. Handen vrij.",
+        "text": "<p>Kies je kleur en neem bij het volgende rondje gewoon één ding mee.</p>",
+        "button_label": "Bestel de Onderweg-fles",
+        "button_link": "/products/onderweg-fles",
+        "fallback": "fles-zachtroze-transparant.svg"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": { "heading": "Wandeltips voor jou en je hond", "text": "<p>Af en toe een mail met routes, seizoenstips en nieuwe Lobbes-producten. Geen spam, altijd afmelden met één klik.</p>", "tag": "home", "style": "section--surface" }
+    }
+  },
+  "order": ["hero", "usp", "benefits", "how", "highlight", "usecases", "specs", "trust", "faq", "final"]
+}

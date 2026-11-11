@@ -1,0 +1,46 @@
+<section class="page-wrap">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumb' | t }}"><ol><li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li><li aria-current="page">{{ page.title }}</li></ol></nav>
+    <div class="media-text" style="align-items:start">
+      <div>
+        <h1 class="page-title">{{ page.title }}</h1>
+        <div class="rte">{{ page.content }}</div>
+        {%- if settings.company_hours != blank -%}<p><strong>{{ settings.company_hours }}</strong></p>{%- endif -%}
+        {% render 'company-info' %}
+      </div>
+      <div class="card">
+        {%- form 'contact', class: 'form', id: 'ContactForm' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-success" role="status" tabindex="-1" autofocus>{{ 'contact.success' | t }}</p>
+          {%- else -%}
+            {%- if form.errors -%}<div class="form-errors" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+            <div>
+              <label for="ContactName">{{ 'contact.name' | t }}</label>
+              <input type="text" id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name }}">
+            </div>
+            <div>
+              <label for="ContactEmail">{{ 'contact.email' | t }} <span class="small">({{ 'contact.required' | t }})</span></label>
+              <input type="email" id="ContactEmail" name="contact[email]" autocomplete="email" required value="{{ form.email }}">
+            </div>
+            <div>
+              <label for="ContactOrder">{{ 'contact.order' | t }}</label>
+              <input type="text" id="ContactOrder" name="contact[order]" value="{{ form.order }}">
+            </div>
+            <div>
+              <label for="ContactBody">{{ 'contact.message' | t }} <span class="small">({{ 'contact.required' | t }})</span></label>
+              <textarea id="ContactBody" name="contact[body]" required>{{ form.body }}</textarea>
+            </div>
+            <p class="small">{{ 'contact.privacy' | t }}{% if section.settings.privacy_page != blank %} <a href="{{ section.settings.privacy_page.url }}">{{ section.settings.privacy_page.title }}</a>{% endif %}</p>
+            <button type="submit" class="btn btn--primary">{{ 'contact.send' | t }}</button>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contactformulier",
+  "settings": [ { "type": "page", "id": "privacy_page", "label": "Privacypagina" } ]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+<section class="section {{ section.settings.style }}">
+  <div class="container" style="max-width:820px">
+    {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+    <div class="rte">{{ section.settings.text }}</div>
+    {%- if section.settings.button_label != blank -%}<p><a class="btn btn--secondary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a></p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Tekst",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Achtergrond", "options": [ {"value":"","label":"Zand"}, {"value":"section--surface","label":"Klei"}, {"value":"section--white","label":"Wit"}, {"value":"section--primary","label":"Bosgroen"} ], "default": "" },
+    { "type": "text", "id": "eyebrow", "label": "Bovenkop" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Kop" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Tekst</p>" },
+    { "type": "text", "id": "button_label", "label": "Knop" },
+    { "type": "url", "id": "button_link", "label": "Knop link" }
+  ],
+  "presets": [ { "name": "Tekst" } ]
+}
+{% endschema %}

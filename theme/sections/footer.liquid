@@ -1,0 +1,67 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="{{ routes.root_url }}" style="color:#F6F1E7;display:inline-block;margin-bottom:12px">{% render 'logo', width: 140, circle: '#2C5247' %}</a>
+        {%- if section.settings.about != blank -%}<p>{{ section.settings.about }}</p>{%- endif -%}
+        <div class="social">
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">{% render 'icon', name: 'instagram' %}<span class="visually-hidden">Instagram ({{ 'accessibility.external' | t }})</span></a>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">{% render 'icon', name: 'tiktok' %}<span class="visually-hidden">TikTok ({{ 'accessibility.external' | t }})</span></a>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" rel="noopener" target="_blank">{% render 'icon', name: 'facebook' %}<span class="visually-hidden">Facebook ({{ 'accessibility.external' | t }})</span></a>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" rel="noopener" target="_blank">{% render 'icon', name: 'youtube' %}<span class="visually-hidden">YouTube ({{ 'accessibility.external' | t }})</span></a>{%- endif -%}
+        </div>
+      </div>
+      {%- for key in (1..2) -%}
+        {%- liquid
+          if key == 1
+            assign m = linklists[section.settings.menu_1]
+          else
+            assign m = linklists[section.settings.menu_2]
+          endif
+        -%}
+        {%- if m.links.size > 0 -%}
+        <nav aria-label="{{ m.title | escape }}">
+          <h2>{{ m.title }}</h2>
+          <ul>{%- for link in m.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+        </nav>
+        {%- endif -%}
+      {%- endfor -%}
+      <div>
+        <h2>{{ section.settings.newsletter_title }}</h2>
+        {%- form 'customer', id: 'FooterNewsletter', class: 'form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter,footer">
+          {%- if form.posted_successfully? -%}
+            <p class="form-success" role="status">{{ 'newsletter.success' | t }}</p>
+          {%- else -%}
+            {%- if form.errors -%}<div class="form-errors" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+            <div>
+              <label for="FooterNewsletterEmail" class="visually-hidden">{{ 'newsletter.label' | t }}</label>
+              <input id="FooterNewsletterEmail" class="input" type="email" name="contact[email]" autocomplete="email" required placeholder="{{ 'newsletter.label' | t }}">
+            </div>
+            <button type="submit" class="btn btn--primary">{{ 'newsletter.submit' | t }}</button>
+            <p class="small">{{ 'newsletter.consent' | t }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>
+        {% render 'company-info' %}
+        {%- assign year = 'now' | date: '%Y' -%}
+        <span>{{ 'footer.copyright' | t: year: year, shop: shop.name }}</span>
+      </div>
+      {% render 'payment-icons' %}
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "about", "label": "Korte merktekst", "default": "Slimme, vrolijke spullen voor onderweg met je hond. Klaar voor elk rondje." },
+    { "type": "link_list", "id": "menu_1", "label": "Menu 1", "default": "footer" },
+    { "type": "link_list", "id": "menu_2", "label": "Menu 2 (juridisch)" },
+    { "type": "text", "id": "newsletter_title", "label": "Nieuwsbrief titel", "default": "Wandeltips in je inbox" }
+  ]
+}
+{% endschema %}

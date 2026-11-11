@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "main": { "type": "main-page" },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "style": "section--white",
+        "reverse": false,
+        "fallback": "lobbes-beeldmerk.svg",
+        "eyebrow": "Waarom Lobbes",
+        "heading": "Een lobbes is een goeie hond. Wij maken goeie spullen voor onderweg.",
+        "text": "<p>Iedere hondenbaas kent het: een fles water in de ene jaszak, een zakje brokjes in de andere, een opvouwbaar bakje ergens in je tas. Lobbes maakt spullen die dat simpeler maken, te beginnen met de Onderweg-fles.</p>",
+        "button_label": "Bekijk de Onderweg-fles",
+        "button_link": "/products/onderweg-fles"
+      }
+    },
+    "values": {
+      "type": "feature-cards",
+      "blocks": {
+        "v1": { "type": "card", "settings": { "icon": "check", "title": "Eerlijk", "text": "<p>We vertellen wat een product kan, en wat niet. Geen nepreviews, geen nepkortingen, geen afteltimers.</p>" } },
+        "v2": { "type": "card", "settings": { "icon": "paw", "title": "Praktisch", "text": "<p>Alles wat we verkopen moet het rondje makkelijker maken. Anders verkopen we het niet.</p>" } },
+        "v3": { "type": "card", "settings": { "icon": "chat", "title": "Dichtbij", "text": "<p>Vragen of feedback? Je mailt met ons, in het Nederlands. Jouw ervaringen bepalen wat we hierna maken.</p>" } }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": { "eyebrow": "Waar we voor staan", "heading": "Drie beloftes", "columns": "3", "style": "section--surface" }
+    },
+    "final": {
+      "type": "final-cta",
+      "settings": { "eyebrow": "Klaar voor elk rondje", "heading": "Begin met de Onderweg-fles", "text": "<p>Water én brokjes in één fles, in vijf kleuren.</p>", "button_label": "Kies je kleur", "button_link": "/products/onderweg-fles", "fallback": "fles-lavendel-transparant.svg" }
+    }
+  },
+  "order": ["main", "story", "values", "final"]
+}

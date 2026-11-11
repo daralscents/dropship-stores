@@ -1,0 +1,82 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Lobbes",
+    "theme_version": "1.0.0",
+    "theme_author": "Lobbes",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Kleuren",
+    "settings": [
+      { "type": "color", "id": "color_primary", "label": "Primair (bosgroen)", "default": "#1F3B33" },
+      { "type": "color", "id": "color_background", "label": "Achtergrond (zand)", "default": "#F6F1E7" },
+      { "type": "color", "id": "color_accent", "label": "Accent / knoppen (terracotta)", "default": "#B4502A" },
+      { "type": "color", "id": "color_surface", "label": "Vlakken (klei)", "default": "#E8DCC8" },
+      { "type": "color", "id": "color_text", "label": "Tekst", "default": "#1A1F1C" },
+      { "type": "color", "id": "color_muted", "label": "Gedempte tekst", "default": "#56635D" }
+    ]
+  },
+  {
+    "name": "Typografie",
+    "settings": [
+      { "type": "font_picker", "id": "type_header_font", "label": "Koppen", "default": "dm_sans_n7" },
+      { "type": "font_picker", "id": "type_body_font", "label": "Tekst", "default": "dm_sans_n4" }
+    ]
+  },
+  {
+    "name": "Logo & favicon",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo (optioneel; standaard het Lobbes SVG-logo)" },
+      { "type": "range", "id": "logo_width", "label": "Logobreedte", "min": 80, "max": 240, "step": 4, "unit": "px", "default": 148 },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (32×32 PNG)" }
+    ]
+  },
+  {
+    "name": "Winkelwagen",
+    "settings": [
+      { "type": "select", "id": "cart_type", "label": "Na toevoegen", "options": [ { "value": "drawer", "label": "Winkelwagenlade openen" }, { "value": "page", "label": "Naar winkelwagenpagina" } ], "default": "drawer" },
+      { "type": "product", "id": "cart_upsell_product", "label": "Bundel-suggestie product", "info": "Toont 'Maak er een Duo van' als er 1 stuk van dit product in de winkelwagen zit." },
+      { "type": "text", "id": "cart_upsell_text", "label": "Bundel-suggestie tekst", "default": "Tweede fles erbij? Met 2 stuks krijg je automatisch € 2,50 korting per fles." }
+    ]
+  },
+  {
+    "name": "Verzending & service",
+    "settings": [
+      { "type": "paragraph", "content": "Deze teksten verschijnen op productpagina en in de winkelwagen. Laat leeg om te verbergen. Vul alleen in wat je waar kunt maken." },
+      { "type": "text", "id": "shipping_text", "label": "Verzending", "default": "Gratis verzending naar Nederland en België" },
+      { "type": "text", "id": "delivery_text", "label": "Levertijd", "info": "Bijv. 'Levering in 3–6 werkdagen'. Alleen invullen als de leverancier dit bevestigt." },
+      { "type": "text", "id": "returns_text", "label": "Retour", "default": "14 dagen bedenktijd, eenvoudig retourneren" },
+      { "type": "text", "id": "service_text", "label": "Service", "default": "Persoonlijke klantenservice in het Nederlands" }
+    ]
+  },
+  {
+    "name": "Bedrijfsgegevens",
+    "settings": [
+      { "type": "paragraph", "content": "Verplicht voor Nederlandse webshops. Wordt in de footer en op de contactpagina getoond. Alleen gevulde velden worden weergegeven." },
+      { "type": "text", "id": "company_name", "label": "Juridische (handels)naam" },
+      { "type": "textarea", "id": "company_address", "label": "Bezoek-/vestigingsadres" },
+      { "type": "text", "id": "company_kvk", "label": "KvK-nummer" },
+      { "type": "text", "id": "company_vat", "label": "Btw-identificatienummer" },
+      { "type": "text", "id": "company_email", "label": "E-mailadres klantenservice" },
+      { "type": "text", "id": "company_phone", "label": "Telefoonnummer (optioneel)" },
+      { "type": "text", "id": "company_hours", "label": "Bereikbaarheid", "default": "We reageren binnen 1 werkdag (ma–vr)" }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      { "type": "image_picker", "id": "share_image", "label": "Standaard deelafbeelding (1200×630)" }
+    ]
+  }
+]

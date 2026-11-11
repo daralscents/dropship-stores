@@ -1,0 +1,34 @@
+{
+  "title": "Onderweg-fles: 2-in-1 drinkfles met voervak voor honden",
+  "handle": "onderweg-fles",
+  "vendor": "Lobbes",
+  "productType": "Drinkfles voor honden",
+  "tags": ["drinkfles hond", "waterfles hond", "voerdispenser", "onderweg", "wandelen"],
+  "seo": {
+    "title": "Drinkfles hond met voervak – 2-in-1 Onderweg-fles | Lobbes",
+    "description": "Water én brokjes in één fles: de Lobbes Onderweg-fles met voervak, waterreservoir, vergrendelknop en draagkoord. 5 kleuren, gratis verzending NL & BE."
+  },
+  "descriptionHtml": "<p>Met de Lobbes Onderweg-fles heb je water én brokjes voor je hond altijd bij de hand, in één fles. Bovenin zit een voervak voor brokjes of beloningssnoepjes, onderin een waterreservoir. Met de knop in het midden zet je de fles op slot als je hem opbergt, en ontgrendel je hem zodra je hond dorst heeft.</p><h3>Waarom hondenbazen hem meenemen</h3><ul><li><strong>Alles in één:</strong> geen losse flesjes, bakjes en zakjes meer in je jaszak.</li><li><strong>Handen vrij:</strong> draag hem aan het koord om je pols of aan je tas.</li><li><strong>Op slot:</strong> vergrendelen voor in je tas, ontgrendelen om te drinken.</li><li><strong>Netjes drinken:</strong> je hond drinkt uit het drinkgedeelte van de fles, niet uit je hand.</li></ul><h3>Ideaal voor</h3><p>Het dagelijkse rondje, training en puppycursus, dagjes uit, vakanties met de auto en lange wandelingen op het strand of in het bos.</p><h3>Kleuren</h3><p>Steengrijs, Zachtroze, Krijtwit, IJsblauw en Lavendel.</p>",
+  "option": "Kleur",
+  "price": "29.95",
+  "variants": [
+    { "color": "Steengrijs", "sku": "LOB-OWF-GRY" },
+    { "color": "Zachtroze", "sku": "LOB-OWF-PNK" },
+    { "color": "Krijtwit", "sku": "LOB-OWF-WHT" },
+    { "color": "IJsblauw", "sku": "LOB-OWF-BLU" },
+    { "color": "Lavendel", "sku": "LOB-OWF-LAV" }
+  ],
+  "metafieldDefinitions": [
+    { "key": "subtitel", "name": "Ondertitel", "type": "single_line_text_field" },
+    { "key": "inhoud_water", "name": "Inhoud water", "type": "single_line_text_field", "todo": "bijv. '350 ml' – alleen na bevestiging leverancier" },
+    { "key": "inhoud_voer", "name": "Inhoud voervak", "type": "single_line_text_field", "todo": "bijv. '150 g droge brokjes'" },
+    { "key": "materiaal", "name": "Materiaal", "type": "single_line_text_field", "todo": "bijv. 'PP (BPA-vrij), siliconen afdichting' – alleen met materiaalverklaring/testrapport" },
+    { "key": "afmetingen", "name": "Afmetingen", "type": "single_line_text_field" },
+    { "key": "gewicht", "name": "Gewicht (leeg)", "type": "single_line_text_field" },
+    { "key": "reiniging", "name": "Reiniging", "type": "single_line_text_field", "default": "Na gebruik omspoelen met lauw water en open laten drogen" },
+    { "key": "fabrikant", "name": "Fabrikant (naam, adres, e-mail/website)", "type": "multi_line_text_field", "todo": "GPSR – verplicht" },
+    { "key": "eu_verantwoordelijke", "name": "Verantwoordelijke persoon in de EU", "type": "multi_line_text_field", "todo": "GPSR – verplicht als fabrikant buiten EU zit (vaak: jouw eigen bedrijf als importeur)" },
+    { "key": "model", "name": "Model- / typenummer", "type": "single_line_text_field", "todo": "GPSR – productidentificatie" },
+    { "key": "waarschuwingen", "name": "Waarschuwingen", "type": "multi_line_text_field", "default": "Niet geschikt als speelgoed; laat je hond niet op de fles kauwen.\nAlleen geschikt voor water en droge brokjes/snoepjes.\nBuiten bereik van kinderen bewaren (kleine onderdelen)." }
+  ]
+}

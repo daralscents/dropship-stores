@@ -1,0 +1,20 @@
+<div class="usp">
+  <ul class="container usp__list">
+    {%- for block in section.blocks -%}
+      <li {{ block.shopify_attributes }}>{% render 'icon', name: block.settings.icon %}<span>{{ block.settings.text }}</span></li>
+    {%- endfor -%}
+  </ul>
+</div>
+{% schema %}
+{
+  "name": "USP-balk",
+  "blocks": [
+    { "type": "usp", "name": "USP", "settings": [
+      { "type": "select", "id": "icon", "label": "Icoon", "options": [ {"value":"truck","label":"Verzending"}, {"value":"return","label":"Retour"}, {"value":"lock","label":"Slot/veilig"}, {"value":"chat","label":"Service"}, {"value":"shield","label":"Garantie"}, {"value":"paw","label":"Poot"} ], "default": "truck" },
+      { "type": "text", "id": "text", "label": "Tekst", "default": "Gratis verzending" }
+    ] }
+  ],
+  "max_blocks": 4,
+  "presets": [ { "name": "USP-balk" } ]
+}
+{% endschema %}

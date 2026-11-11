@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "main": { "type": "main-page" },
+    "product": {
+      "type": "faq",
+      "blocks": {
+        "a1": { "type": "qa", "settings": { "question": "Hoe werkt de Onderweg-fles?", "answer": "<p>Bovenin zit een voervak voor brokjes of snoepjes, onderin een waterreservoir. In het midden zit een knop waarmee je de fles op slot zet of ontgrendelt. Als je hond wil drinken, ontgrendel je de fles en laat je water in het drinkgedeelte lopen.</p>" } },
+        "a2": { "type": "qa", "settings": { "question": "Hoeveel water en voer past erin?", "answer": "<p>De inhoud vind je bij de specificaties op de productpagina. Twijfel je of het genoeg is voor jouw hond? Stuur ons een berichtje.</p>" } },
+        "a3": { "type": "qa", "settings": { "question": "Lekt de fles in mijn tas?", "answer": "<p>Zet de knop op slot als je de fles opbergt en vervoer hem bij voorkeur rechtop. Lekt jouw fles toch? Neem contact op, dan zoeken we samen een oplossing.</p>" } },
+        "a4": { "type": "qa", "settings": { "question": "Is hij geschikt voor grote honden?", "answer": "<p>Het drinkgedeelte is bedoeld om tussendoor te drinken. Drinkt jouw hond veel, dan vul je het een paar keer bij vanuit het reservoir.</p>" } },
+        "a5": { "type": "qa", "settings": { "question": "Hoe maak ik de fles schoon?", "answer": "<p>Spoel beide compartimenten na gebruik om met lauw water en laat ze open drogen. Gebruik geen schuurmiddelen.</p>" } },
+        "a6": { "type": "qa", "settings": { "question": "Kan ik er ook snoepjes of natvoer in doen?", "answer": "<p>Het voervak is bedoeld voor droge brokjes en droge snoepjes. Natvoer raden we af: dat is lastig schoon te maken en bederft snel.</p>" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4", "a5", "a6"],
+      "settings": { "heading": "Over het product", "schema": true, "style": "" }
+    },
+    "order": {
+      "type": "faq",
+      "blocks": {
+        "b1": { "type": "qa", "settings": { "question": "Hoe kan ik betalen?", "answer": "<p>Je rekent af via de beveiligde checkout van Shopify. De beschikbare betaalmethoden, zoals iDEAL, zie je in de checkout.</p>" } },
+        "b2": { "type": "qa", "settings": { "question": "Hoe werkt de bundelkorting?", "answer": "<p>Bij 2 Onderweg-flessen krijg je € 2,50 korting per fles, bij 3 of meer € 4,00 per fles. De korting wordt automatisch verrekend in je winkelwagen. Kleuren mixen mag.</p>" } },
+        "b3": { "type": "qa", "settings": { "question": "Kan ik mijn bestelling nog wijzigen?", "answer": "<p>Mail ons zo snel mogelijk met je bestelnummer. Is je bestelling nog niet verzonden, dan passen we hem graag aan.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": { "heading": "Bestellen & betalen", "schema": false, "style": "section--surface" }
+    },
+    "shipping": {
+      "type": "faq",
+      "blocks": {
+        "c1": { "type": "qa", "settings": { "question": "Wat zijn de verzendkosten?", "answer": "<p>Verzending naar Nederland en België is gratis.</p>" } },
+        "c2": { "type": "qa", "settings": { "question": "Wanneer is mijn bestelling in huis?", "answer": "<p>De actuele levertijd staat op de productpagina en op <a href=\"/pages/verzending-en-levering\">Verzending &amp; levering</a>. Zodra je pakket onderweg is, ontvang je een e-mail met een trackinglink.</p>" } },
+        "c3": { "type": "qa", "settings": { "question": "Hoe retourneer ik iets?", "answer": "<p>Je hebt 14 dagen bedenktijd na ontvangst. Meld je retour via ons contactformulier of per e-mail; je leest alle stappen op <a href=\"/pages/retourneren\">Retourneren &amp; terugbetalen</a>.</p>" } },
+        "c4": { "type": "qa", "settings": { "question": "Mijn fles is beschadigd of werkt niet goed. Wat nu?", "answer": "<p>Wat vervelend! Stuur ons een foto of korte video en je bestelnummer. Valt het onder de wettelijke garantie, dan krijg je een vervangend exemplaar of je geld terug.</p>" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"],
+      "settings": { "heading": "Verzending, retour & garantie", "schema": false, "style": "", "link_label": "Nog een vraag? Neem contact op", "link": "/pages/contact" }
+    }
+  },
+  "order": ["main", "product", "order", "shipping"]
+}

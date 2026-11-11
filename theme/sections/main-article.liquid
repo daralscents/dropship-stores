@@ -1,0 +1,38 @@
+<article class="page-wrap">
+  <div class="container" style="max-width:820px">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumb' | t }}"><ol><li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li><li><a href="{{ blog.url }}">{{ blog.title }}</a></li><li aria-current="page">{{ article.title }}</li></ol></nav>
+    <h1>{{ article.title }}</h1>
+    <p class="small"><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'date' }}</time>{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+    {%- if article.image -%}<div style="border-radius:20px;overflow:hidden;margin:24px 0">{{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600,900,1200,1600', sizes: '(min-width: 820px) 820px, 100vw' }}</div>{%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+    {%- if section.settings.cta_product != blank -%}
+      <div class="card" style="margin-top:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1 1 240px"><strong>{{ section.settings.cta_text }}</strong></div>
+        <a class="btn btn--primary" href="{{ section.settings.cta_product.url }}">{{ 'product.view' | t }}</a>
+      </div>
+    {%- endif -%}
+    <p style="margin-top:32px"><a class="link-arrow" href="{{ blog.url }}">{{ 'blog.back' | t: blog: blog.title }}</a></p>
+  </div>
+</article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "author": { "@type": "Organization", "name": {{ shop.name | json }} },
+  "publisher": { "@type": "Organization", "name": {{ shop.name | json }} },
+  {%- if article.image -%}"image": {{ article.image | image_url: width: 1200 | prepend: 'https:' | json }},{%- endif -%}
+  "mainEntityOfPage": {{ request.origin | append: article.url | json }}
+}
+</script>
+{% schema %}
+{
+  "name": "Artikel",
+  "settings": [
+    { "type": "product", "id": "cta_product", "label": "Product onder artikel" },
+    { "type": "text", "id": "cta_text", "label": "CTA-tekst", "default": "Water en brokjes mee op je volgende wandeling? Bekijk de Lobbes Onderweg-fles." }
+  ]
+}
+{% endschema %}

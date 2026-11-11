@@ -1,0 +1,30 @@
+{%- comment -%} item, index, mode ('page' | 'drawer') {%- endcomment -%}
+<li class="cart-item">
+  <a class="cart-item__img" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+    {%- if item.image -%}{{ item.image | image_url: width: 168 | image_tag: loading: 'lazy', alt: '' }}{%- else -%}{%- assign fb = 'fles-' | append: item.variant.title | handleize | append: '.svg' -%}<img src="{{ fb | asset_url }}" alt="" width="84" height="84" loading="lazy">{%- endif -%}
+  </a>
+  <div>
+    <a class="cart-item__title" href="{{ item.url }}">{{ item.product.title }}</a>
+    {%- unless item.product.has_only_default_variant -%}<div class="cart-item__variant">{{ item.variant.title }}</div>{%- endunless -%}
+    {%- for d in item.line_level_discount_allocations -%}<div class="cart-item__discount">{{ d.discount_application.title }} (−{{ d.amount | money }})</div>{%- endfor -%}
+    {%- if mode == 'drawer' -%}
+      <div class="qty">
+        <button type="button" data-line-change data-line="{{ index }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="{{ 'accessibility.quantity_decrease' | t: product: item.product.title | escape }}">−</button>
+        <input type="number" value="{{ item.quantity }}" readonly aria-label="{{ 'product.quantity' | t }}" tabindex="-1">
+        <button type="button" data-line-change data-line="{{ index }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="{{ 'accessibility.quantity_increase' | t: product: item.product.title | escape }}">+</button>
+      </div>
+      <button type="button" class="cart-item__remove" data-line-change data-line="{{ index }}" data-qty="0">{{ 'cart.remove' | t }}</button>
+    {%- else -%}
+      <div class="qty" data-qty-wrap>
+        <button type="button" data-step="-1" aria-label="{{ 'accessibility.quantity_decrease' | t: product: item.product.title | escape }}">−</button>
+        <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" id="Qty-{{ index }}" aria-label="{{ 'product.quantity' | t }}">
+        <button type="button" data-step="1" aria-label="{{ 'accessibility.quantity_increase' | t: product: item.product.title | escape }}">+</button>
+      </div>
+      <a class="cart-item__remove" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+    {%- endif -%}
+  </div>
+  <div class="cart-item__price">
+    {%- if item.original_line_price != item.final_line_price -%}<s>{{ item.original_line_price | money }}</s>{%- endif -%}
+    {{ item.final_line_price | money }}
+  </div>
+</li>

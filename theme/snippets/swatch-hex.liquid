@@ -1,0 +1,21 @@
+{%- liquid
+  assign key = value | downcase | handleize
+  case key
+    when 'steengrijs', 'grijs', 'grey', 'gray'
+      assign hex = '#B8BDC2'
+    when 'zachtroze', 'roze', 'pink'
+      assign hex = '#EEA2B4'
+    when 'krijtwit', 'wit', 'white'
+      assign hex = '#F4F3EF'
+    when 'ijsblauw', 'blauw', 'blue'
+      assign hex = '#80C7E6'
+    when 'lavendel', 'paars', 'purple'
+      assign hex = '#C69CC3'
+    else
+      assign hex = '#D9D6CF'
+  endcase
+  if value.swatch.color
+    assign hex = value.swatch.color
+  endif
+  echo hex
+-%}

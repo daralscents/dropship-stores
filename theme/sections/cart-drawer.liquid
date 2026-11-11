@@ -1,0 +1,32 @@
+{%- comment -%} Wordt ververst via de Section Rendering API (sections: ['cart-drawer']). {%- endcomment -%}
+<div id="CartDrawer" class="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="CartDrawerTitle">
+  <div class="drawer__backdrop" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <h2 id="CartDrawerTitle">{{ 'cart.title' | t }}</h2>
+      <button type="button" class="icon-btn" data-drawer-close>{% render 'icon', name: 'close' %}<span class="visually-hidden">{{ 'general.close' | t }}</span></button>
+    </div>
+    <div id="CartDrawerStatus" class="drawer__status" role="status" aria-live="polite"></div>
+    <div id="CartDrawerInner" style="display:flex;flex-direction:column;flex:1;min-height:0">
+      {%- if cart.item_count == 0 -%}
+        <div class="drawer__body"><div class="cart-empty"><p>{{ 'cart.empty' | t }}</p><a class="btn btn--primary" href="{{ routes.all_products_collection_url }}" data-drawer-close>{{ 'cart.continue' | t }}</a></div></div>
+      {%- else -%}
+        <div class="drawer__body">
+          <ul class="cart-items">
+            {%- for item in cart.items -%}
+              {% render 'cart-line', item: item, index: forloop.index, mode: 'drawer' %}
+            {%- endfor -%}
+          </ul>
+          {% render 'cart-upsell' %}
+        </div>
+        <div class="drawer__foot">
+          {% render 'cart-totals' %}
+          <form action="{{ routes.cart_url }}" method="post">
+            <button type="submit" name="checkout" class="btn btn--primary btn--full">{% render 'icon', name: 'lock' %} {{ 'cart.checkout' | t }}</button>
+          </form>
+          <p class="text-center small" style="margin:10px 0 0"><a href="{{ routes.cart_url }}">{{ 'cart.title' | t }} bekijken</a></p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

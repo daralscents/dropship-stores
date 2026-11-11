@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_primary }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'lobbes-beeldmerk.svg' | asset_url }}">
+    {%- endif -%}
+
+    {%- liquid
+      assign page_title_full = page_title
+      if current_tags
+        assign page_title_full = page_title_full | append: ' – ' | append: current_tags | join: ', '
+      endif
+      if current_page != 1
+        assign page_title_full = page_title_full | append: ' – Pagina ' | append: current_page
+      endif
+      unless page_title contains shop.name
+        assign page_title_full = page_title_full | append: ' | ' | append: shop.name
+      endunless
+    -%}
+    <title>{{ page_title_full | strip }}</title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    {%- liquid
+      assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+    -%}
+    <style>
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+      {{ body_font_bold | font_face: font_display: 'swap' }}
+      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      :root {
+        --c-primary: {{ settings.color_primary }};
+        --c-bg: {{ settings.color_background }};
+        --c-accent: {{ settings.color_accent }};
+        --c-surface: {{ settings.color_surface }};
+        --c-text: {{ settings.color_text }};
+        --c-muted: {{ settings.color_muted }};
+        --f-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --f-head: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+        --fw-head: {{ settings.type_header_font.weight }};
+      }
+    </style>
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    {{ content_for_header }}
+    {% render 'structured-data' %}
+  </head>
+
+  <body class="template-{{ template.name }}">
+    <a class="skip-link" href="#main">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+    <main id="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+    {% section 'cart-drawer' %}
+    <script>
+      window.Lobbes = {
+        routes: { cartAdd: {{ routes.cart_add_url | append: '.js' | json }}, cartChange: {{ routes.cart_change_url | append: '.js' | json }}, cart: {{ routes.cart_url | json }} },
+        strings: { added: {{ 'cart.added' | t | json }}, error: {{ 'cart.error' | t | json }}, soldOut: {{ 'product.sold_out' | t | json }}, addToCart: {{ 'product.add_to_cart' | t | json }}, unavailable: {{ 'product.unavailable' | t | json }} },
+        cartType: {{ settings.cart_type | json }}
+      };
+    </script>
+  </body>
+</html>

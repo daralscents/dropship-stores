@@ -1,0 +1,273 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign m = product.metafields.lobbes
+  assign color_index = nil
+  for option in product.options_with_values
+    assign oname = option.name | downcase
+    if oname == 'kleur' or oname == 'color' or oname == 'colour'
+      assign color_index = forloop.index0
+    endif
+  endfor
+  assign duo_disc = section.settings.duo_discount | default: 0
+  assign trio_disc = section.settings.trio_discount | default: 0
+-%}
+<section class="product" data-product>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumb' | t }}">
+      <ol><li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li><li aria-current="page">{{ product.title }}</li></ol>
+    </nav>
+    <div class="product__grid">
+      <div class="product__media-wrap">
+        <div class="gallery" aria-roledescription="carrousel" aria-label="{{ product.title | escape }}">
+          {%- if product.media.size > 0 -%}
+            <div class="gallery__track" tabindex="0" aria-label="{{ product.title | escape }}">
+              {%- for media in product.media -%}
+                {%- liquid
+                  assign alt = media.alt | default: product.title
+                  if forloop.first
+                    assign loading = 'eager'
+                  else
+                    assign loading = 'lazy'
+                  endif
+                -%}
+                <div class="gallery__slide" data-media-id="{{ media.id }}" role="group" aria-roledescription="dia" aria-label="{{ 'accessibility.gallery_item' | t: index: forloop.index, total: forloop.length }}">
+                  {%- case media.media_type -%}
+                    {%- when 'image' -%}
+                      {%- if forloop.first -%}
+                        {{ media | image_url: width: 1400 | image_tag: widths: '400,600,800,1000,1400', sizes: '(min-width: 990px) 55vw, 100vw', alt: alt, loading: loading, fetchpriority: 'high' }}
+                      {%- else -%}
+                        {{ media | image_url: width: 1400 | image_tag: widths: '400,600,800,1000,1400', sizes: '(min-width: 990px) 55vw, 100vw', alt: alt, loading: loading }}
+                      {%- endif -%}
+                    {%- when 'video' -%}
+                      {{ media | video_tag: controls: true, muted: true, playsinline: true, preload: 'metadata', image_size: '1200x' }}
+                    {%- when 'external_video' -%}
+                      {{ media | external_video_tag }}
+                    {%- else -%}
+                      {{ media | media_tag }}
+                  {%- endcase -%}
+                </div>
+              {%- endfor -%}
+            </div>
+            {%- if product.media.size > 1 -%}
+              <div class="gallery__dots" aria-hidden="true">{%- for media in product.media -%}<span{% if forloop.first %} class="is-active"{% endif %}></span>{%- endfor -%}</div>
+              <ul class="gallery__thumbs">
+                {%- for media in product.media -%}
+                  <li><button type="button" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'accessibility.gallery_item' | t: index: forloop.index, total: forloop.length }}">{{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          {%- else -%}
+            {%- comment -%} Nog geen productmedia: toon Lobbes-illustraties per kleur {%- endcomment -%}
+            {%- assign color_values = product.options_with_values[color_index].values -%}
+            <div class="gallery__track" tabindex="0" aria-label="{{ product.title | escape }}">
+              {%- if color_index != nil -%}
+                {%- for value in color_values -%}
+                  {%- assign vh = value | downcase | handleize -%}
+                  <div class="gallery__slide" data-media-option="{{ value | downcase }}"><img src="{{ 'fles-' | append: vh | append: '.svg' | asset_url }}" alt="{{ product.title | escape }} – {{ value | escape }}" width="800" height="800"{% unless forloop.first %} loading="lazy"{% endunless %}></div>
+                {%- endfor -%}
+              {%- else -%}
+                <div class="gallery__slide"><img src="{{ 'fles-ijsblauw.svg' | asset_url }}" alt="{{ product.title | escape }}" width="800" height="800"></div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="product__info">
+        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h1 class="product__title">{{ product.title }}</h1>
+        {%- if m.subtitel.value != blank -%}<p class="product__subtitle">{{ m.subtitel.value }}</p>{%- elsif section.settings.subtitle != blank -%}<p class="product__subtitle">{{ section.settings.subtitle }}</p>{%- endif -%}
+        <div class="price">
+          <span class="price__current" data-price>{{ current_variant.price | money }}</span>
+          <span class="price__note">{{ 'product.price_incl_vat' | t }}{% if settings.shipping_text != blank %} · {{ settings.shipping_text }}{% endif %}</span>
+        </div>
+
+        {%- form 'product', product, class: 'product__form', data-product-form: '', novalidate: 'novalidate' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {%- unless section.settings.show_bundles -%}<input type="hidden" name="quantity" value="1">{%- endunless -%}
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <fieldset>
+                <legend class="field-label">{{ option.name }}: <span data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</span></legend>
+                {%- if forloop.index0 == color_index -%}
+                  <div class="swatches">
+                    {%- for value in option.values -%}
+                      {%- assign vh = value | downcase | handleize -%}
+                      <div class="swatch">
+                        <input type="radio" id="Opt-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" data-option-index="{{ option.position | minus: 1 }}"{% if option.selected_value == value %} checked{% endif %}>
+                        <label for="Opt-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" title="{{ value | escape }}" style="background:{% render 'swatch-hex', value: value %}"><span class="visually-hidden">{{ value }}</span></label>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- else -%}
+                  <div class="options-pills">
+                    {%- for value in option.values -%}
+                      <div class="pill">
+                        <input type="radio" id="Opt-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" data-option-index="{{ option.position | minus: 1 }}"{% if option.selected_value == value %} checked{% endif %}>
+                        <label for="Opt-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">{{ value }}</label>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </fieldset>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          {%- if section.settings.show_bundles -%}
+          <fieldset class="bundle">
+            <legend class="field-label">{{ 'product.bundle_title' | t }}</legend>
+            <div class="bundle__opt" data-bundle-qty="1" data-bundle-discount="0">
+              <input type="radio" name="quantity" id="Bundle-1-{{ section.id }}" value="1" checked>
+              <label for="Bundle-1-{{ section.id }}"><span><span class="bundle__name">{{ 'product.bundle_single' | t }}</span></span><span class="bundle__price" data-bundle-total>{{ current_variant.price | money }}</span></label>
+            </div>
+            {%- if duo_disc > 0 -%}
+            {%- assign duo_each = current_variant.price | minus: duo_disc -%}
+            <div class="bundle__opt" data-bundle-qty="2" data-bundle-discount="{{ duo_disc }}">
+              <input type="radio" name="quantity" id="Bundle-2-{{ section.id }}" value="2">
+              <label for="Bundle-2-{{ section.id }}"><span><span class="bundle__name">{{ 'product.bundle_duo' | t }}</span><span class="bundle__meta"><span data-bundle-each>{{ duo_each | money }}</span> per fles</span></span><span class="bundle__price"><span data-bundle-total>{{ duo_each | times: 2 | money }}</span><br><span class="bundle__save">−<span data-bundle-saving>{{ duo_disc | times: 2 | money }}</span></span></span></label>
+            </div>
+            {%- endif -%}
+            {%- if trio_disc > 0 -%}
+            {%- assign trio_each = current_variant.price | minus: trio_disc -%}
+            <div class="bundle__opt" data-bundle-qty="3" data-bundle-discount="{{ trio_disc }}">
+              <input type="radio" name="quantity" id="Bundle-3-{{ section.id }}" value="3">
+              <label for="Bundle-3-{{ section.id }}"><span><span class="bundle__name">{{ 'product.bundle_trio' | t }}</span><span class="bundle__meta"><span data-bundle-each>{{ trio_each | money }}</span> per fles</span></span><span class="bundle__price"><span data-bundle-total>{{ trio_each | times: 3 | money }}</span><br><span class="bundle__save">−<span data-bundle-saving>{{ trio_disc | times: 3 | money }}</span></span></span></label>
+            </div>
+            {%- endif -%}
+            <p class="bundle__note">{{ 'product.bundle_note' | t }}</p>
+          </fieldset>
+          {%- endif -%}
+
+          <div>
+            <button type="submit" class="btn btn--primary btn--full" data-atc{% unless current_variant.available %} disabled{% endunless %}>
+              {%- if current_variant.available -%}{{ 'product.add_to_cart' | t }}{%- else -%}{{ 'product.sold_out' | t }}{%- endif -%}
+            </button>
+            <p class="form-error" data-form-error role="alert"></p>
+          </div>
+        {%- endform -%}
+
+        <ul class="product__info-list">
+          {%- if settings.shipping_text != blank -%}<li>{% render 'icon', name: 'truck' %}{{ settings.shipping_text }}</li>{%- endif -%}
+          {%- if settings.delivery_text != blank -%}<li>{% render 'icon', name: 'route' %}{{ settings.delivery_text }}</li>{%- endif -%}
+          {%- if settings.returns_text != blank -%}<li>{% render 'icon', name: 'return' %}{{ settings.returns_text }}</li>{%- endif -%}
+          <li>{% render 'icon', name: 'lock' %}Veilig afrekenen{% if shop.enabled_payment_types.size > 0 %} met o.a. iDEAL{% endif %}</li>
+        </ul>
+        {% render 'payment-icons' %}
+
+        <div class="product__accordion accordion">
+          {%- if product.description != blank -%}
+          <details open>
+            <summary>{{ 'product.details' | t }}</summary>
+            <div class="accordion__body rte">{{ product.description }}</div>
+          </details>
+          {%- endif -%}
+          <details>
+            <summary>{{ 'product.specs' | t }}</summary>
+            <div class="accordion__body">
+              <dl class="spec-list">
+                {%- if section.settings.show_base_specs -%}
+                <div class="spec-list__row"><dt>{{ 'product.spec_compartments' | t }}</dt><dd>{{ 'product.spec_compartments_value' | t }}</dd></div>
+                <div class="spec-list__row"><dt>{{ 'product.spec_lock' | t }}</dt><dd>{{ 'product.spec_lock_value' | t }}</dd></div>
+                <div class="spec-list__row"><dt>{{ 'product.spec_carry' | t }}</dt><dd>{{ 'product.spec_carry_value' | t }}</dd></div>
+                {%- endif -%}
+                {%- if color_index != nil -%}<div class="spec-list__row"><dt>{{ 'product.spec_colors' | t }}</dt><dd>{{ product.options_with_values[color_index].values | join: ', ' }}</dd></div>{%- endif -%}
+                {%- if m.inhoud_water.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_water' | t }}</dt><dd>{{ m.inhoud_water.value }}</dd></div>{%- endif -%}
+                {%- if m.inhoud_voer.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_food' | t }}</dt><dd>{{ m.inhoud_voer.value }}</dd></div>{%- endif -%}
+                {%- if m.materiaal.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_material' | t }}</dt><dd>{{ m.materiaal.value }}</dd></div>{%- endif -%}
+                {%- if m.afmetingen.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_dimensions' | t }}</dt><dd>{{ m.afmetingen.value }}</dd></div>{%- endif -%}
+                {%- if m.gewicht.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_weight' | t }}</dt><dd>{{ m.gewicht.value }}</dd></div>{%- endif -%}
+                {%- if m.reiniging.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.spec_care' | t }}</dt><dd>{{ m.reiniging.value }}</dd></div>{%- endif -%}
+              </dl>
+            </div>
+          </details>
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.title }}</summary>
+              <div class="accordion__body rte">
+                {{ block.settings.content }}
+                {%- if block.settings.page != blank -%}{{ block.settings.page.content }}{%- endif -%}
+              </div>
+            </details>
+          {%- endfor -%}
+          <details>
+            <summary>{{ 'product.shipping_returns' | t }}</summary>
+            <div class="accordion__body rte">
+              <ul>
+                {%- if settings.shipping_text != blank -%}<li>{{ settings.shipping_text }}.</li>{%- endif -%}
+                {%- if settings.delivery_text != blank -%}<li>{{ settings.delivery_text }}.</li>{%- endif -%}
+                {%- if settings.returns_text != blank -%}<li>{{ settings.returns_text }}.</li>{%- endif -%}
+              </ul>
+              <p>
+                {%- if section.settings.shipping_page != blank -%}<a href="{{ section.settings.shipping_page.url }}">{{ section.settings.shipping_page.title }}</a>{%- endif -%}
+                {%- if section.settings.shipping_page != blank and section.settings.returns_page != blank %} · {% endif -%}
+                {%- if section.settings.returns_page != blank -%}<a href="{{ section.settings.returns_page.url }}">{{ section.settings.returns_page.title }}</a>{%- endif -%}
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>{{ 'product.safety' | t }}</summary>
+            <div class="accordion__body">
+              {%- if m.fabrikant.value != blank or m.eu_verantwoordelijke.value != blank -%}
+                <dl class="spec-list">
+                  {%- if m.fabrikant.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.manufacturer' | t }}</dt><dd>{{ m.fabrikant.value | newline_to_br }}</dd></div>{%- endif -%}
+                  {%- if m.eu_verantwoordelijke.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.responsible_person' | t }}</dt><dd>{{ m.eu_verantwoordelijke.value | newline_to_br }}</dd></div>{%- endif -%}
+                  {%- if m.model.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.model' | t }}</dt><dd>{{ m.model.value }}</dd></div>{%- endif -%}
+                  {%- if m.waarschuwingen.value != blank -%}<div class="spec-list__row"><dt>{{ 'product.warnings' | t }}</dt><dd>{{ m.waarschuwingen.value | newline_to_br }}</dd></div>{%- endif -%}
+                </dl>
+              {%- else -%}
+                <p>{{ 'product.safety_missing' | t }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-product-json>
+    {
+      "id": {{ product.id | json }},
+      "currency": {{ cart.currency.iso_code | json }},
+      "options": {{ product.options | json }},
+      "variants": [
+        {%- for v in product.variants -%}
+        { "id": {{ v.id | json }}, "options": {{ v.options | json }}, "price": {{ v.price | json }}, "available": {{ v.available | json }}, "featured_media_id": {{ v.featured_media.id | json }} }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+</section>
+
+<div class="sticky-atc" data-sticky-atc aria-hidden="true" inert>
+  <div class="sticky-atc__info">
+    <div class="sticky-atc__title">{{ product.title }}</div>
+    <div class="sticky-atc__price" data-sticky-price>{{ current_variant.price | money }}{% unless product.has_only_default_variant %} · {{ current_variant.title }}{% endunless %}</div>
+  </div>
+  <button type="button" class="btn btn--primary"{% unless current_variant.available %} disabled{% endunless %}>{{ 'product.add_to_cart' | t }}</button>
+</div>
+
+{% schema %}
+{
+  "name": "Productpagina",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenkop", "default": "Lobbes · voor onderweg" },
+    { "type": "text", "id": "subtitle", "label": "Ondertitel (metafield lobbes.subtitel heeft voorrang)", "default": "Water én brokjes in één fles. Klik op slot en gaan." },
+    { "type": "checkbox", "id": "show_base_specs", "label": "Toon zichtbare basiskenmerken (compartimenten, vergrendeling, draagkoord)", "default": true },
+    { "type": "header", "content": "Bundels" },
+    { "type": "checkbox", "id": "show_bundles", "label": "Bundelkeuze tonen", "default": true },
+    { "type": "number", "id": "duo_discount", "label": "Duo-korting per fles (in centen)", "info": "Moet exact overeenkomen met de automatische korting in Shopify (min. 2 stuks). 250 = € 2,50.", "default": 250 },
+    { "type": "number", "id": "trio_discount", "label": "Trio-korting per fles (in centen)", "info": "Moet exact overeenkomen met de automatische korting in Shopify (min. 3 stuks). 400 = € 4,00.", "default": 400 },
+    { "type": "header", "content": "Links" },
+    { "type": "page", "id": "shipping_page", "label": "Pagina verzending" },
+    { "type": "page", "id": "returns_page", "label": "Pagina retourneren" }
+  ],
+  "blocks": [
+    { "type": "collapsible", "name": "Uitklapblok", "settings": [
+      { "type": "text", "id": "title", "label": "Titel", "default": "Zo werkt het" },
+      { "type": "richtext", "id": "content", "label": "Inhoud" },
+      { "type": "page", "id": "page", "label": "Of: inhoud van pagina" }
+    ] }
+  ]
+}
+{% endschema %}

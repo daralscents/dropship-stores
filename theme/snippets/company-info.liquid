@@ -1,0 +1,10 @@
+{%- if settings.company_name != blank or settings.company_address != blank or settings.company_kvk != blank -%}
+<address>
+  {%- if settings.company_name != blank -%}<strong>{{ settings.company_name }}</strong><br>{%- endif -%}
+  {%- if settings.company_address != blank -%}{{ settings.company_address | newline_to_br }}<br>{%- endif -%}
+  {%- if settings.company_kvk != blank -%}{{ 'footer.kvk' | t }}: {{ settings.company_kvk }}<br>{%- endif -%}
+  {%- if settings.company_vat != blank -%}{{ 'footer.vat' | t }}: {{ settings.company_vat }}<br>{%- endif -%}
+  {%- if settings.company_email != blank -%}<a href="mailto:{{ settings.company_email }}">{{ settings.company_email }}</a><br>{%- endif -%}
+  {%- if settings.company_phone != blank -%}<a href="tel:{{ settings.company_phone | remove: ' ' }}">{{ settings.company_phone }}</a>{%- endif -%}
+</address>
+{%- endif -%}

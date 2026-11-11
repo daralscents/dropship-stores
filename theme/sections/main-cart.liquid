@@ -1,0 +1,44 @@
+<section class="cart-page">
+  <div class="container">
+    <h1 class="page-title">{{ 'cart.title' | t }}</h1>
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-empty">
+        <p class="lead">{{ 'cart.empty' | t }}</p>
+        <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="cart-grid">
+        <div>
+          <form action="{{ routes.cart_url }}" method="post" id="CartForm" data-autosubmit>
+            <ul class="cart-items">
+              {%- for item in cart.items -%}
+                {% render 'cart-line', item: item, index: forloop.index, mode: 'page' %}
+              {%- endfor -%}
+            </ul>
+            <noscript><button type="submit" name="update" class="btn btn--secondary" style="margin-top:16px">{{ 'cart.update' | t }}</button></noscript>
+          </form>
+          {% render 'cart-upsell' %}
+          <p style="margin-top:16px"><a class="link-arrow" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a></p>
+        </div>
+        <aside class="cart-summary" aria-label="{{ 'cart.total' | t }}">
+          {% render 'cart-totals' %}
+          {%- if section.settings.show_note -%}
+            <div class="cart-note" style="margin-bottom:16px">
+              <label for="CartNote" class="small">{{ 'cart.note' | t }}</label>
+              <textarea id="CartNote" name="note" form="CartForm">{{ cart.note }}</textarea>
+            </div>
+          {%- endif -%}
+          <button type="submit" name="checkout" form="CartForm" class="btn btn--primary btn--full">{% render 'icon', name: 'lock' %} {{ 'cart.checkout' | t }}</button>
+          {% render 'trust-list' %}
+          {% render 'payment-icons' %}
+        </aside>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Winkelwagen",
+  "settings": [ { "type": "checkbox", "id": "show_note", "label": "Opmerkingenveld tonen", "default": false } ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+{%- assign p = section.settings.product -%}
+<section class="section section--white" id="{{ section.settings.anchor | default: 'product' }}">
+  <div class="container media-text">
+    <div class="media-text__media">
+      {%- if p != blank and p.featured_media -%}
+        {{ p.featured_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400,600,800,1200', sizes: '(min-width: 990px) 50vw, 100vw', alt: p.featured_media.alt | default: p.title }}
+      {%- else -%}
+        <img src="{{ 'fles-lavendel.svg' | asset_url }}" alt="Lobbes Onderweg-fles" width="800" height="800" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{% if p != blank %}{{ p.title }}{% else %}{{ section.settings.heading }}{% endif %}</h2>
+      {%- if p != blank -%}
+        <div class="price" style="margin-bottom:12px"><span class="price__current">{{ p.price | money }}</span><span class="price__note">{{ 'product.price_incl_vat' | t }}</span></div>
+      {%- endif -%}
+      {{ section.settings.text }}
+      {%- if p != blank -%}
+        {%- for option in p.options_with_values -%}
+          {%- if option.name == 'Kleur' or option.name == 'Color' -%}
+          <p class="small" style="margin-bottom:8px">{{ option.values.size }} kleuren: {{ option.values | join: ', ' }}</p>
+          <div class="swatches" style="margin-bottom:24px" aria-hidden="true">
+            {%- for value in option.values -%}{% render 'swatch-color', value: value, size: 28 %}{%- endfor -%}
+          </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      <a class="btn btn--primary" href="{% if p != blank %}{{ p.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">{{ section.settings.button_label }}</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Product uitgelicht",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "anchor", "label": "Anker-ID", "default": "product" },
+    { "type": "text", "id": "eyebrow", "label": "Bovenkop", "default": "De Onderweg-fles" },
+    { "type": "text", "id": "heading", "label": "Kop (als geen product gekozen)", "default": "Lobbes Onderweg-fles" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Voervak boven, waterreservoir onder, vergrendelknop in het midden. Hangt aan het draagkoord om je pols of tas.</p>" },
+    { "type": "text", "id": "button_label", "label": "Knop", "default": "Kies je kleur" }
+  ],
+  "presets": [ { "name": "Product uitgelicht" } ]
+}
+{% endschema %}

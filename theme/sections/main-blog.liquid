@@ -1,0 +1,32 @@
+<section class="page-wrap">
+  <div class="container">
+    <h1 class="page-title">{{ blog.title }}</h1>
+    {%- paginate blog.articles by 12 -%}
+      {%- if blog.articles.size > 0 -%}
+      <div class="grid grid--3">
+        {%- for article in blog.articles -%}
+          <a class="article-card" href="{{ article.url }}">
+            {%- if article.image -%}<div class="card__media" style="margin:0">{{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400,600,800', sizes: '(min-width: 750px) 33vw, 100vw' }}</div>{%- endif -%}
+            <div class="article-card__body">
+              <h2 style="font-size:1.25rem">{{ article.title }}</h2>
+              <p>{{ article.excerpt_or_content | strip_html | truncatewords: 28 }}</p>
+              <span class="link-arrow">{{ 'blog.read_more' | t }}</span>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- else -%}
+        <p>{{ 'blog.empty' | t }}</p>
+      {%- endif -%}
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination" aria-label="Paginering">
+          {%- if paginate.previous -%}<a class="btn btn--secondary" href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+          {%- if paginate.next -%}<a class="btn btn--secondary" href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

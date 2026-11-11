@@ -1,0 +1,16 @@
+{%- comment -%} Eerlijke bundel-suggestie: alleen als er precies 1 stuk van het ingestelde product in de winkelwagen zit. {%- endcomment -%}
+{%- assign up = settings.cart_upsell_product -%}
+{%- if up != blank and settings.cart_upsell_text != blank -%}
+  {%- assign up_qty = 0 -%}{%- assign up_variant = nil -%}
+  {%- for item in cart.items -%}
+    {%- if item.product_id == up.id -%}{%- assign up_qty = up_qty | plus: item.quantity -%}{%- assign up_variant = item.variant -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if up_qty == 1 and up_variant.available -%}
+  <form class="cart-upsell" action="{{ routes.cart_add_url }}" method="post" data-upsell-form>
+    <input type="hidden" name="id" value="{{ up_variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    <span>{{ settings.cart_upsell_text }}</span>
+    <button type="submit" class="btn btn--secondary">{{ 'cart.upsell_cta' | t }}</button>
+  </form>
+  {%- endif -%}
+{%- endif -%}

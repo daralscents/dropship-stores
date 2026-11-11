@@ -1,0 +1,43 @@
+<section class="section section--surface" id="{{ section.settings.anchor | default: 'hoe-het-werkt' }}">
+  <div class="container">
+    <div class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="lead">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <ol class="steps">
+      {%- for block in section.blocks -%}
+        <li class="step" {{ block.shopify_attributes }}>
+          <div class="step__visual">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,600', sizes: '(min-width: 750px) 33vw, 100vw' }}
+            {%- else -%}
+              {% render 'step-illustration', kind: block.settings.illustration %}
+            {%- endif -%}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          {{ block.settings.text }}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Zo werkt het",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anker-ID", "default": "hoe-het-werkt" },
+    { "type": "text", "id": "eyebrow", "label": "Bovenkop", "default": "Zo werkt het" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Vullen, vergrendelen, gaan." },
+    { "type": "richtext", "id": "text", "label": "Intro" }
+  ],
+  "blocks": [ { "type": "step", "name": "Stap", "settings": [
+    { "type": "select", "id": "illustration", "label": "Illustratie", "options": [ {"value":"fill","label":"Vullen"}, {"value":"lock","label":"Vergrendelen"}, {"value":"go","label":"Onderweg"} ], "default": "fill" },
+    { "type": "image_picker", "id": "image", "label": "Foto/GIF (vervangt illustratie)" },
+    { "type": "text", "id": "title", "label": "Titel", "default": "Stap" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Uitleg</p>" }
+  ] } ],
+  "max_blocks": 3,
+  "presets": [ { "name": "Zo werkt het" } ]
+}
+{% endschema %}

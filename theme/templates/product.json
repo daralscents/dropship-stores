@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "how": { "type": "collapsible", "settings": { "title": "Zo gebruik je hem", "content": "<ol><li>Vul het voervak bovenin met brokjes of snoepjes.</li><li>Vul het reservoir onderin met vers water.</li><li>Zet de knop op slot en hang de fles aan je pols of tas.</li><li>Tijd om te drinken? Ontgrendel en laat water in het drinkgedeelte lopen.</li><li>Na gebruik: vergrendelen, en thuis beide delen omspoelen en open laten drogen.</li></ol><p>Tip: vervoer de fles rechtop in je tas.</p>" } }
+      },
+      "block_order": ["how"],
+      "settings": {
+        "eyebrow": "Lobbes · voor onderweg",
+        "subtitle": "Water én brokjes in één fles. Klik op slot en gaan.",
+        "show_base_specs": true,
+        "show_bundles": true,
+        "duo_discount": 250,
+        "trio_discount": 400
+      }
+    },
+    "benefits": {
+      "type": "feature-cards",
+      "blocks": {
+        "b1": { "type": "card", "settings": { "icon": "bowl", "title": "Alles in één", "text": "<p>Brokjes boven, water onder. Eén ding om mee te nemen.</p>" } },
+        "b2": { "type": "card", "settings": { "icon": "hand", "title": "Handen vrij", "text": "<p>Aan het draagkoord om je pols of aan je tas.</p>" } },
+        "b3": { "type": "card", "settings": { "icon": "lock", "title": "Op slot", "text": "<p>Vergrendelen als je hem opbergt, ontgrendelen als je hond dorst heeft.</p>" } },
+        "b4": { "type": "card", "settings": { "icon": "gift", "title": "Leuk cadeau", "text": "<p>Voor elke hondenvriend die graag op pad gaat.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": { "eyebrow": "Waarom je hem wilt", "heading": "Gemaakt voor de wandeling van elke dag", "columns": "4", "style": "section--white" }
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "illustration": "fill", "title": "Vullen", "text": "<p>Brokjes in het voervak, water in het reservoir.</p>" } },
+        "s2": { "type": "step", "settings": { "illustration": "lock", "title": "Op slot", "text": "<p>Knop op slot, fles aan je pols of tas.</p>" } },
+        "s3": { "type": "step", "settings": { "illustration": "go", "title": "Onderweg", "text": "<p>Ontgrendelen, water in het drinkgedeelte, en je hond drinkt.</p>" } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": { "anchor": "hoe-het-werkt", "eyebrow": "Zo werkt het", "heading": "Vullen, op slot, gaan." }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "Welke kleuren zijn er?", "answer": "<p>Steengrijs, Zachtroze, Krijtwit, IJsblauw en Lavendel.</p>" } },
+        "q2": { "type": "qa", "settings": { "question": "Lekt de fles in mijn tas?", "answer": "<p>Zet de knop op slot als je de fles opbergt en vervoer hem bij voorkeur rechtop. Lekt jouw fles toch? Neem contact op, dan zoeken we samen een oplossing.</p>" } },
+        "q3": { "type": "qa", "settings": { "question": "Kan ik kleuren mixen met de bundelkorting?", "answer": "<p>Ja. Voeg de kleuren los toe aan je winkelwagen. De korting telt alle Onderweg-flessen bij elkaar op: vanaf 2 stuks € 2,50 per fles, vanaf 3 stuks € 4,00 per fles.</p>" } },
+        "q4": { "type": "qa", "settings": { "question": "Hoe maak ik hem schoon?", "answer": "<p>Spoel beide compartimenten na gebruik om met lauw water en laat ze open drogen.</p>" } },
+        "q5": { "type": "qa", "settings": { "question": "Wat als hij niet bevalt?", "answer": "<p>Je hebt 14 dagen bedenktijd na ontvangst. Lees hoe het werkt op <a href=\"/pages/retourneren\">Retourneren &amp; terugbetalen</a>.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": { "heading": "Vragen over de Onderweg-fles", "link_label": "Meer vragen en antwoorden", "link": "/pages/veelgestelde-vragen", "schema": true, "style": "section--surface" }
+    }
+  },
+  "order": ["main", "benefits", "how", "faq"]
+}

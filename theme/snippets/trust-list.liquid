@@ -1,0 +1,7 @@
+{%- comment -%} Alleen tonen wat in thema-instellingen is ingevuld. {%- endcomment -%}
+<ul class="trust-row">
+  {%- if settings.shipping_text != blank -%}<li>{% render 'icon', name: 'truck' %}<span>{{ settings.shipping_text }}</span></li>{%- endif -%}
+  {%- if settings.returns_text != blank -%}<li>{% render 'icon', name: 'return' %}<span>{{ settings.returns_text }}</span></li>{%- endif -%}
+  <li>{% render 'icon', name: 'lock' %}<span>Veilig betalen via Shopify Checkout</span></li>
+  {%- if settings.service_text != blank -%}<li>{% render 'icon', name: 'chat' %}<span>{{ settings.service_text }}</span></li>{%- endif -%}
+</ul>

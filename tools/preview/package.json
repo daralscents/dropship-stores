@@ -1,0 +1,15 @@
+{
+  "name": "lobbes-theme-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "qa": "node qa.mjs"
+  },
+  "dependencies": {
+    "liquidjs": "^10.21.0"
+  },
+  "devDependencies": {
+    "axe-core": "^4.14.0"
+  }
+}

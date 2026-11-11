@@ -1,0 +1,20 @@
+<section class="page-wrap">
+  <div class="container">
+    <h1 class="page-title">{{ section.settings.title }}</h1>
+    <div class="grid grid--3">
+      {%- for collection in collections -%}
+        {%- if collection.products_count > 0 -%}
+        <a class="product-card" href="{{ collection.url }}">
+          <div class="product-card__media">
+            {%- if collection.featured_image -%}{{ collection.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300,500,800', sizes: '(min-width: 750px) 33vw, 100vw' }}{%- else -%}<img src="{{ 'fles-steengrijs.svg' | asset_url }}" alt="" width="800" height="800" loading="lazy">{%- endif -%}
+          </div>
+          <div class="product-card__body"><h2 class="product-card__title">{{ collection.title }}</h2></div>
+        </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Collectielijst", "settings": [ { "type": "text", "id": "title", "label": "Titel", "default": "Collecties" } ] }
+{% endschema %}

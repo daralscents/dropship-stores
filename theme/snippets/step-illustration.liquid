@@ -1,0 +1,31 @@
+{%- comment -%} Eenvoudige illustraties die alleen zichtbare productkenmerken tonen. {%- endcomment -%}
+{%- case kind -%}
+  {%- when 'fill' -%}
+<svg viewBox="0 0 220 200" role="img" aria-label="Voervak vullen met brokjes en reservoir met water">
+  <path d="M60 20c10-10 30-10 40 0" fill="none" stroke="#D9693C" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+  <circle cx="70" cy="10" r="5" fill="#8A5A33"/><circle cx="88" cy="6" r="5" fill="#9C6A3F"/>
+  <rect x="55" y="40" width="70" height="110" rx="30" fill="#80C7E6"/><rect x="65" y="58" width="50" height="50" rx="8" fill="#FBF8F3"/>
+  <g fill="#8A5A33"><circle cx="75" cy="98" r="5"/><circle cx="87" cy="99" r="5"/><circle cx="99" cy="98" r="5"/><circle cx="81" cy="89" r="5"/><circle cx="93" cy="90" r="5"/><circle cx="105" cy="91" r="4"/></g>
+  <circle cx="90" cy="124" r="9" fill="#5FAFD3"/>
+  <path d="M58 150h64l4 30a10 10 0 0 1-10 10H64a10 10 0 0 1-10-10z" fill="#DCEEF6" stroke="#BFDCEA" stroke-width="2"/>
+  <path d="M170 60s16 18 16 30a16 16 0 0 1-32 0c0-12 16-30 16-30z" fill="#80C7E6"/>
+  <path d="M150 110c-10 20-20 40-28 55" fill="none" stroke="#80C7E6" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+</svg>
+  {%- when 'lock' -%}
+<svg viewBox="0 0 220 200" role="img" aria-label="Knop op slot zetten">
+  <rect x="55" y="20" width="110" height="160" rx="40" fill="#80C7E6"/>
+  <circle cx="110" cy="100" r="38" fill="#5FAFD3"/><circle cx="110" cy="100" r="24" fill="#80C7E6"/>
+  <g fill="none" stroke="#1F3B33" stroke-width="5" stroke-linecap="round"><rect x="92" y="150" width="36" height="26" rx="5" fill="#F6F1E7"/><path d="M100 150v-8a10 10 0 0 1 20 0v8"/></g>
+  <path d="M160 60a60 60 0 0 1 0 80" fill="none" stroke="#D9693C" stroke-width="5" stroke-linecap="round"/><path d="m150 136 10 6 4-12" fill="none" stroke="#D9693C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  {%- else -%}
+<svg viewBox="0 0 220 200" role="img" aria-label="Fles aan draagkoord mee op wandeling">
+  <path d="M20 170c40-20 80 10 120-10s50-30 70-20" fill="none" stroke="#8FA89B" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 12"/>
+  <path d="M80 18c20-14 40 0 40 20" fill="none" stroke="#B9B2A6" stroke-width="4" stroke-linecap="round"/>
+  <rect x="70" y="36" width="60" height="100" rx="26" fill="#80C7E6"/><rect x="80" y="52" width="40" height="38" rx="7" fill="#FBF8F3"/>
+  <g fill="#8A5A33"><circle cx="90" cy="82" r="4.5"/><circle cx="101" cy="83" r="4.5"/><circle cx="111" cy="82" r="4.5"/></g>
+  <circle cx="100" cy="104" r="7" fill="#5FAFD3"/>
+  <path d="M72 136h56l3 22a8 8 0 0 1-8 8H77a8 8 0 0 1-8-8z" fill="#DCEEF6" stroke="#BFDCEA" stroke-width="2"/>
+  <circle cx="170" cy="120" r="22" fill="#F6F1E7" stroke="#1F3B33" stroke-width="3"/><path d="M152 108c-8 2-10 14-8 22 2 4 6 4 8 0l4-12zM188 108c8 2 10 14 8 22-2 4-6 4-8 0l-4-12z" fill="#D9693C"/><circle cx="164" cy="118" r="2.5" fill="#1A1F1C"/><circle cx="176" cy="118" r="2.5" fill="#1A1F1C"/><path d="M166 127h8l-4 4z" fill="#1A1F1C"/>
+</svg>
+{%- endcase -%}
