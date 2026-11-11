@@ -18,7 +18,7 @@
 |---|---|---|
 | Webzoekopdracht "Lobbes" + hondenmerk/webshop | Geen hondenmerk of webshop met deze naam gevonden [O] | – |
 | Webzoekopdracht "Lobbes" BOIP/EUIPO | Geen treffers in zoekresultaten [O] | ❗ **Zelf controleren** in het [BOIP-register](https://register.boip.int) en via [TMview](https://www.tmdn.org/tmview) op klasse **18** (lijnen/tuigen), **21** (drinkbakken, flessen, voerbakken) en **28** (speelgoed) |
-| Domeinbeschikbaarheid (lobbes.nl / .be / .com / .shop) | **Niet kunnen controleren**: domeinregisters (RDAP) zijn vanuit deze ontwikkelomgeving geblokkeerd en de Shopify-domeintool vereist opnieuw inloggen | ❗ Na het koppelen van de dev store controleer ik dit met de Shopify-domeintool. Alternatieven als `.nl` bezet is: `lobbes.shop`, `lobbeshond.nl`, `lobbes-dog.com`, `welobbes.nl` |
+| Domeinbeschikbaarheid | **lobbes.com: niet beschikbaar** (Shopify-domeintool, 11-11-2026). `.nl` en `.be` zijn niet door de tool gecontroleerd | ❗ Controleer `lobbes.nl` via [sidn.nl](https://www.sidn.nl) en `lobbes.be` via [dnsbelgium.be](https://www.dnsbelgium.be). Voor een NL/BE-merk is `.nl` het belangrijkst. Alternatieven als die bezet zijn: `lobbes.shop`, `lobbeshond.nl`, `welobbes.nl`, `lobbes-dog.com` |
 | Social handles | Niet gecontroleerd | Claim @lobbes / @lobbes.nl op Instagram en TikTok |
 
 > Aanbeveling: registreer na de checks een **Benelux-woordmerk** (vanaf ±€244 voor 1 klasse, extra klassen tegen meerprijs; check de actuele BOIP-tarieven). Breid later uit naar een EU-merk zodra je in DE/FR gaat verkopen. Koop geen domein en dien geen merk in zonder akkoord van de eigenaar.
